@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
@@ -20,6 +20,12 @@ int run(void)
 		task1(); printf("\n"); run();
 	case 2:
 		task2(); printf("\n"); run();
+	case 3:
+		task3_1(); printf("\n"); run();
+	case 4:
+		task4(); printf("\n"); run();
+	case 10:
+		task10(); printf("\n"); run();
 	case 11:
 		task1_1(); printf("\n"); run();
 	default:
@@ -143,4 +149,162 @@ int task2(void)
 	}
 
 	printf("closest to average is M[%d][%d] = %d", x, y, closestElt);
+}
+
+int task3(void)
+{
+	int M[MI1][MI2];
+	int count = 0;
+	int final = 0;
+	int i, j, x, y;
+
+	for (i = 0; i < MI1; i++) {
+		for (j = 0; j < MI2; j++) {
+			M[i][j] = rand() % 10;
+		}
+	}
+
+	for (i = 0; i < MI1; i++) {
+		for (j = 0; j < MI2; j++) {
+			printf("\t%d", M[i][j]);
+		}
+		printf("\n");
+	}
+
+
+	
+	for (i = 0; i < MI1; i++)
+	{
+		for (j = i+1; j < MI2; j++)
+		{
+			if (M[i] == M[j]) {
+				count++;
+				break;
+			}
+		}
+	}
+
+
+	printf("%d", count);
+}
+
+#define ROWS 3
+#define COLS 3
+int task3_1(void)
+{
+	int array[ROWS][COLS];
+	int i, j, total = 0;
+	int counts[10] = { 0 }; // Предполагаем, что работаем только с цифрами от 0 до 9
+
+
+	for (i = 0; i < ROWS; i++) {
+		for (j = 0; j < COLS; j++) {
+			array[i][j] = rand() % 10;
+		}
+	}
+
+	for (i = 0; i < ROWS; i++) {
+		for (j = 0; j < COLS; j++) {
+			printf("\t%d", array[i][j]);
+		}
+		printf("\n");
+	}
+
+	// Подсчет повторяющихся цифр
+	for (int i = 0; i < ROWS; i++) {
+		for (int j = 0; j < COLS; j++) {
+			int currentDigit = array[i][j];
+
+			// Увеличиваем счетчик для текущей цифры
+			counts[currentDigit]++;
+		}
+	}
+
+	// Вывод результатов
+	for (int i = 0; i < 10; i++) {
+		if (counts[i] > 1) {
+			printf("Digit %d repeats %d times.\n", i, counts[i]);
+			total += counts[i];
+		}
+	}
+
+	printf("total - %d", total);
+
+	return 0;
+}
+
+int task4(void)
+{
+	int M[MI1][MI2];
+	int k = 0, i, j, index = -1;
+	int a;
+
+	for (i = 0; i < MI1; i++) {
+		for (j = 0; j < MI2; j++) {
+			M[i][j] = rand() % 10;
+		}
+	}
+
+	for (i = 0; i < MI1; i++) {
+		for (j = 0; j < MI2; j++) {
+			printf("\t%d", M[i][j]);
+		}
+		printf("\n");
+	}
+
+	printf("input a: "); scanf("%d", &a);
+
+	for (i = 0; i < MI1; i++) {
+		k = 0;
+		for (j = 0; j < MI2; j++) {
+			if (M[i][j] % a == 0) {
+				k++;
+			}
+			if (k == MI2) {
+				if (index < i) {
+					index = i;
+				}
+			}
+		}
+	}
+	printf("%d", index);
+}
+
+int task10(void)
+{
+	int M[MI1][MI2];
+	int i, j, sum, fsum = 100;
+
+	for (i = 0; i < MI1; i++)
+	{
+		for (j = 0; j < MI2; j++)
+		{
+			M[i][j] = rand() % 10; // % 10 - from 0 to 10
+		}
+	}
+
+	for (i = 0; i < MI1; i++)
+	{
+		for (j = 0; j < MI2; j++)
+		{
+			printf("\t%d", M[i][j]);
+		}
+		printf("\n");
+	}
+
+	for (i = 0; i < MI1; i++)
+	{
+		for (j = 1; j < MI2; j++)
+		{
+			sum = M[i][j] + M[i + i][j ]; //arrays way of work
+		}
+
+		if (fsum > sum) {
+			fsum = sum;
+		}
+
+	}
+
+	printf("%d", fsum);
+
 }
