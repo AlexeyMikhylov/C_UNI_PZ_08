@@ -194,7 +194,7 @@ int task3_1(void)
 {
 	int array[ROWS][COLS];
 	int i, j, total = 0;
-	int counts[10] = { 0 }; // Предполагаем, что работаем только с цифрами от 0 до 9
+	int counts[10] = { 0 };
 
 
 	for (i = 0; i < ROWS; i++) {
@@ -210,17 +210,14 @@ int task3_1(void)
 		printf("\n");
 	}
 
-	// Подсчет повторяющихся цифр
 	for (int i = 0; i < ROWS; i++) {
 		for (int j = 0; j < COLS; j++) {
-			int currentDigit = array[i][j];
 
-			// Увеличиваем счетчик для текущей цифры
-			counts[currentDigit]++;
+			int currentDigit = array[i][j];
+			counts[currentDigit]++; 
 		}
 	}
 
-	// Вывод результатов
 	for (int i = 0; i < 10; i++) {
 		if (counts[i] > 1) {
 			printf("Digit %d repeats %d times.\n", i, counts[i]);
