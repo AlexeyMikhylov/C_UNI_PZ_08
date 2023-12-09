@@ -398,28 +398,23 @@ int task6(void)
 
 int task6_1(void)
 {
-	int matrix[N][N];
 	int n, i, j;
 
-	printf("(n x n): ");
-	scanf("%d", &n);
+	int matrix[MI6][MJ6] = {
+		{1, 2, 2, 2},
+		{2, 1, 7, 2},
+		{2, 5, 1, 3},
+		{2, 2, 3, 1}
+	};
 
-	printf(":\n");
-
-	for (i = 0; i < n; i++) {
-		for (j = 0; j < n; j++) {
-			scanf("%d", &matrix[i][j]);
-		}
-	}
-
-	for (i = 0; i < n; i++) {
-		for (j = 0; j < n; j++) {
+	for (i = 0; i < MI6; i++) {
+		for (j = 0; j < MJ6; j++) {
 			printf("\t%d", matrix[i][j]);
 		}
 		printf("\n");
 	}
 
-	if (checkSymmetric(matrix, n)) {
+	if (checkSymmetric(matrix, MI6)) {
 		printf("sym.\n");
 	}
 	else {
@@ -427,7 +422,7 @@ int task6_1(void)
 	}
 }
 
-int checkSymmetric(int matrix[][N], int n)
+int checkSymmetric(int matrix[MI6][MJ6], int n)
 {
 	int i, j;
 
@@ -437,7 +432,6 @@ int checkSymmetric(int matrix[][N], int n)
 				return 0; //no sym
 		}
 	}
-
 	// sym
 	return 1;
 }
