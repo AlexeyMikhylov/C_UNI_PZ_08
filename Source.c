@@ -40,6 +40,8 @@ int run(void)
 		task6_1(); printf("\n"); run();
 	case 7:
 		task7(); printf("\n"); run();
+	case 9:
+		task9(); printf("\n"); run();
 	case 10:
 		task10(); printf("\n"); run();
 	case 11:
@@ -441,6 +443,7 @@ int task7(void)
 		printf("\n");
 	}
 
+	//easy way
 	for (i = 0; i < MI1; i++) {
 		for (j = i + 1; j < MI1 - i - 1; j++) {
 			cnt += M[i][j];
@@ -495,6 +498,40 @@ int task7(void)
 
 
 	printf("%d", topQuartSum);
+}
+
+int task9(void)
+{
+	int M[MI1][MI2];
+	int i, j, topQuartSum = 0, subDig[MI1] = { 0 };
+
+	for (i = 0; i < MI1; i++) {
+		for (j = 0; j < MI2; j++) {
+			M[i][j] = rand() % 10;
+		}
+	}
+
+	for (i = 0; i < MI1; i++) {
+		for (j = 0; j < MI2; j++) {
+			printf("\t%d", M[i][j]);
+		}
+		printf("\n");
+	}
+
+	for (i = 0; i < MI1; i++)
+	{
+		for (j = 0; j < MI2; j++)
+		{
+			if ((i + j) == MI1-1)
+			{
+				subDig[i] = M[i][j];
+			}
+		}
+	}
+
+	for (i = 0; i < MI1; i++) {
+		printf("%d", subDig[i]);
+	}
 }
 
 int task10(void)
