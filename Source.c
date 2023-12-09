@@ -5,8 +5,10 @@
 #define MI1 4
 #define MI2 4
 
-#define MI6 3
-#define MJ6 3
+#define MI6 4
+#define MJ6 4
+
+#define N 100
 
 int main()
 {
@@ -34,6 +36,8 @@ int run(void)
 		task5	(); printf("\n"); run();
 	case 6:
 		task6(); printf("\n"); run();
+	case 61:
+		task6_1(); printf("\n"); run();
 	case 10:
 		task10(); printf("\n"); run();
 	case 11:
@@ -344,17 +348,26 @@ int task6(void)
 		}
 	}*/
 
-	int M[MI6][MJ6] = {
+	/*int M[MI6][MJ6] = {
 		{1, 2, 0}, 
 		{2, 4, 5}, 
 		{0, 5, 3}
+	};*/
+
+	int M[MI6][MJ6] = {
+		{1, 2, 2, 2},
+		{2, 1, 5, 2},
+		{2, 5, 1, 3},
+		{2, 2, 2, 1}
 	};
 
 	/*int M[MI6][MJ6] = {
-		{1, 2, 2, 2},
-		{2, 1, 5, 2},
-		{2, 5, 1, 2},
-		{2, 2, 2, 1}
+		{1, 2, 2, 2, 2, 2},
+		{2, 1, 5, 2, 2, 2},
+		{2, 5, 1, 2, 2, 2},
+		{2, 2, 2, 1, 2, 2},
+		{2, 2, 2, 1, 1, 2},
+		{2, 2, 2, 1, 2, 1}
 	};*/
 
 	for (i = 0; i < MI6; i++) {
@@ -364,20 +377,11 @@ int task6(void)
 		printf("\n");
 	}
 
-	for (i = 0; i < MI6; i++) 
-	{
-		for (j = 0; j < MJ6; j++)
-		{
-			if (M[i][j+1] == M[i+1][j]) {
-				cnt++;
-			}
-		}
-	}
-
 	for (i = 0; i < MI6; i++) {
 		for (j = i + 1; j < MJ6; j++) {
-			if (M[i][j] != M[j][i])
+			if (M[i][j] != M[j][i]) {
 				cnt++;
+			}
 		}
 	}
 
@@ -390,6 +394,52 @@ int task6(void)
 		printf("non symmetrical");
 	}
 
+}
+
+int task6_1(void)
+{
+	int matrix[N][N];
+	int n, i, j;
+
+	printf("(n x n): ");
+	scanf("%d", &n);
+
+	printf(":\n");
+
+	for (i = 0; i < n; i++) {
+		for (j = 0; j < n; j++) {
+			scanf("%d", &matrix[i][j]);
+		}
+	}
+
+	for (i = 0; i < n; i++) {
+		for (j = 0; j < n; j++) {
+			printf("\t%d", matrix[i][j]);
+		}
+		printf("\n");
+	}
+
+	if (checkSymmetric(matrix, n)) {
+		printf("sym.\n");
+	}
+	else {
+		printf("non sym.\n");
+	}
+}
+
+int checkSymmetric(int matrix[][N], int n)
+{
+	int i, j;
+
+	for (i = 0; i < n; i++) {
+		for (j = i + 1; j < n; j++) {
+			if (matrix[i][j] != matrix[j][i])
+				return 0; //no sym
+		}
+	}
+
+	// sym
+	return 1;
 }
 
 int task10(void)
