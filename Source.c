@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define MI1 4
-#define MI2 4
+#define MI1 5
+#define MI2 5
 
 #define MI6 4
 #define MJ6 4
@@ -429,14 +429,64 @@ int task7(void)
 
 	for (i = 0; i < MI1; i++) {
 		for (j = 0; j < MI2; j++) {
+			if (i == j) {
+				M[i][j] = 0;
+			}
+			else if ((0 + i) == (MI2 - 1 - j))
+			{
+				M[i][j] = 0;
+			}
 			printf("\t%d", M[i][j]);
 		}
 		printf("\n");
 	}
 
-	for (j = 1; j < MI2 - 1; j++) {
-		topQuartSum += M[0][j];
+	printf("\n\n");
+
+	for (i = 0; i < MI1; i++) {
+		M[i][0] = 0;
 	}
+
+	for (i = 0; i < MI1; i++) {
+		M[i][MI2-1] = 0;
+	}
+
+	printf("\n\n");
+
+	//nuls under main diagonal
+	for (i = 1; i < MI1; i++)
+	{
+		for (j = i; j < MI2; j++)
+		{
+			if (M[i][j] == M[j][i]) {
+				for (i = j; j < MI1; j++)
+				{
+					M[j][i] = 0;
+				}
+			}
+		}
+	}
+	//nulls under sub diagonal
+	for (i = 0; i < MI1; i++)
+	{
+		for (j = 0; j < MI2; j++)
+		{
+			if ((i + j) >= MI1)
+			{
+				M[i][j] = 0;
+			}
+		}
+	}
+
+	for (i = 0; i < MI1; i++) {
+		for (j = 0; j < MI2; j++) {
+			topQuartSum += M[i][j];
+			printf("\t%d", M[i][j]);
+		}
+		printf("\n");
+	}
+
+
 	printf("%d", topQuartSum);
 }
 
