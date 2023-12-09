@@ -419,7 +419,7 @@ int checkSymmetric(int matrix[MI6][MJ6], int n)
 int task7(void)
 {
 	int M[MI1][MI2];
-	int i, j, topQuartSum = 0;
+	int i, j, topQuartSum = 0, cnt = 0;
 
 	for (i = 0; i < MI1; i++) {
 		for (j = 0; j < MI2; j++) {
@@ -441,7 +441,14 @@ int task7(void)
 		printf("\n");
 	}
 
-	printf("\n\n");
+	for (i = 0; i < MI1; i++) {
+		for (j = i + 1; j < MI1 - i - 1; j++) {
+			cnt += M[i][j];
+		}
+	}
+	printf("%d", cnt);
+
+	printf("\n");
 
 	for (i = 0; i < MI1; i++) {
 		M[i][0] = 0;
