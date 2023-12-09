@@ -381,15 +381,13 @@ int task6(void)
 		}
 	}
 
-	printf("%d", cnt);
-
 	if (cnt > 0)
 	{
-		printf("symetric");
+		printf("symmetrical");
 	}
 	else
 	{
-		printf("non symetric");
+		printf("non symmetrical");
 	}
 
 }
