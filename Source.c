@@ -2,6 +2,12 @@
 #include <stdlib.h>
 #include <math.h>
 
+#define MI1 4
+#define MI2 4
+
+#define MI6 3
+#define MJ6 3
+
 int main()
 {
 	run();
@@ -24,6 +30,10 @@ int run(void)
 		task3_1(); printf("\n"); run();
 	case 4:
 		task4(); printf("\n"); run();
+	case 5:
+		task5	(); printf("\n"); run();
+	case 6:
+		task6(); printf("\n"); run();
 	case 10:
 		task10(); printf("\n"); run();
 	case 11:
@@ -63,8 +73,6 @@ int task1_1(void)
 	getch();
 }
 
-#define MI1 3
-#define MI2 3
 int task1(void)
 {
 	int M[MI1][MI2];
@@ -214,7 +222,7 @@ int task3_1(void)
 		for (int j = 0; j < COLS; j++) {
 
 			int currentDigit = array[i][j];
-			counts[currentDigit]++; 
+			counts[currentDigit]++;
 		}
 	}
 
@@ -265,6 +273,125 @@ int task4(void)
 		}
 	}
 	printf("%d", index);
+}
+
+int task5(void)
+{
+	int M[MI1][MI2];
+	int positive, negative, i, j, i2[MI2], cnt = 0;
+
+	for (i = 0; i < MI2; i++) {
+		i2[i] = -1;
+	}
+
+	for (i = 0; i < MI1; i++) {
+		for (j = 0; j < MI2; j++) {
+			M[i][j] = -10 + rand() % 20;
+		}
+	}
+
+	for (i = 0; i < MI1; i++) {
+		for (j = 0; j < MI2; j++) {
+			printf("\t%d", M[i][j]);
+		}
+		printf("\n");
+	}
+
+	for (j = 0; j < MI2; j++)
+	{
+		positive = 0;
+		negative = 0;
+		for (i = 0; i < MI1; i++)
+		{
+			if (M[i][j] > 0)
+			{
+				positive++;
+			}
+			if (M[i][j] < 0)
+			{
+				 negative++;
+			}
+		}
+		if (positive == negative)
+		{
+			i2[j] = j;
+		}
+	}
+
+	printf("\ncols with equal pos and neg numbers:\n");
+	for (i = 0; i < MI2; i++) {
+		if (i2[i] >= 0)
+		{
+			printf("%d", i2[i]);
+		}
+		else {
+			cnt++;
+		}
+	}
+	if (cnt == MI2) {
+		printf("no such cols");
+	}
+}
+
+int task6(void)
+{
+	int k = 0, i, j, cnt = 0;
+
+	/*int M[MI1][MI2];
+	for (i = 0; i < MI1; i++) {
+		for (j = 0; j < MI2; j++) {
+			M[i][j] = rand() % 10;
+		}
+	}*/
+
+	int M[MI6][MJ6] = {
+		{1, 2, 0}, 
+		{2, 4, 5}, 
+		{0, 5, 3}
+	};
+
+	/*int M[MI6][MJ6] = {
+		{1, 2, 2, 2},
+		{2, 1, 5, 2},
+		{2, 5, 1, 2},
+		{2, 2, 2, 1}
+	};*/
+
+	for (i = 0; i < MI6; i++) {
+		for (j = 0; j < MJ6; j++) {
+			printf("\t%d", M[i][j]);
+		}
+		printf("\n");
+	}
+
+	for (i = 0; i < MI6; i++) 
+	{
+		for (j = 0; j < MJ6; j++)
+		{
+			if (M[i][j+1] == M[i+1][j]) {
+				cnt++;
+			}
+		}
+	}
+
+	for (i = 0; i < MI6; i++) {
+		for (j = i + 1; j < MJ6; j++) {
+			if (M[i][j] != M[j][i])
+				cnt++;
+		}
+	}
+
+	printf("%d", cnt);
+
+	if (cnt > 0)
+	{
+		printf("symetric");
+	}
+	else
+	{
+		printf("non symetric");
+	}
+
 }
 
 int task10(void)
