@@ -556,15 +556,11 @@ int task10(void)
 		printf("\n");
 	}
 
-	for (i = 0; i < MI1; i++)
+	for (j = 1; j < MI1; j++)
 	{
-		for (j = 1; j < MI2; j++)
+		for (i = 0; i < MI2; i++)
 		{
-			sum = M[i][j] + M[i + i][j ]; //arrays way of work
-		}
-
-		if (fsum > sum) {
-			fsum = sum;
+			//
 		}
 
 	}
