@@ -171,40 +171,6 @@ int task2(void)
 	printf("closest to average is M[%d][%d] = %d", x, y, closestElt);
 }
 
-int task3(void)
-{
-	int M[MI1][MI2];
-	int count = 0;
-	int final = 0;
-	int i, j, x, y;
-
-	for (i = 0; i < MI1; i++) {
-		for (j = 0; j < MI2; j++) {
-			M[i][j] = rand() % 10;
-		}
-	}
-
-	for (i = 0; i < MI1; i++) {
-		for (j = 0; j < MI2; j++) {
-			printf("\t%d", M[i][j]);
-		}
-		printf("\n");
-	}
-	
-	for (i = 0; i < MI1; i++)
-	{
-		for (j = i+1; j < MI2; j++)
-		{
-			if (M[i] == M[j]) {
-				count++;
-				break;
-			}
-		}
-	}
-
-	printf("%d", count);
-}
-
 #define ROWS 3
 #define COLS 3
 int task3_1(void)
