@@ -34,10 +34,8 @@ int run(void)
 	case 4:
 		task4(); printf("\n"); run();
 	case 5:
-		task5	(); printf("\n"); run();
+		task5(); printf("\n"); run();
 	case 6:
-		task6(); printf("\n"); run();
-	case 61:
 		task6_1(); printf("\n"); run();
 	case 7:
 		task7(); printf("\n"); run();
@@ -346,50 +344,13 @@ int task5(void)
 	}
 }
 
-int task6(void)
-{
-	int k = 0, i, j, cnt = 0;
-
-	int M[MI6][MJ6] = {
-		{1, 2, 2, 2},
-		{2, 1, 5, 2},
-		{2, 5, 1, 3},
-		{2, 2, 2, 1}
-	};
-
-	for (i = 0; i < MI6; i++) {
-		for (j = 0; j < MJ6; j++) {
-			printf("\t%d", M[i][j]);
-		}
-		printf("\n");
-	}
-
-	for (i = 0; i < MI6; i++) {
-		for (j = i + 1; j < MJ6; j++) {
-			if (M[i][j] != M[j][i]) {
-				cnt++;
-			}
-		}
-	}
-
-	if (cnt > 0)
-	{
-		printf("symmetrical");
-	}
-	else
-	{
-		printf("non symmetrical");
-	}
-
-}
-
 int task6_1(void)
 {
 	int n, i, j;
 
 	int matrix[MI6][MJ6] = {
 		{1, 2, 2, 2},
-		{2, 1, 7, 2},
+		{2, 1, 5, 2},
 		{2, 5, 1, 3},
 		{2, 2, 3, 1}
 	};
@@ -419,8 +380,7 @@ int checkSymmetric(int matrix[MI6][MJ6], int n)
 				return 0; //no sym
 		}
 	}
-	// sym
-	return 1;
+	return 1; //sym
 }
 
 int task7(void)
