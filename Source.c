@@ -599,13 +599,15 @@ int task9(void)
 int task10(void)
 {
 	int M[MI1][MI2];
-	int i, j, sum, fsum = 100;
+	int i, j, sum[MI1] = { 0 }, minSum;
+	int ans1[2] = { 0, 1 };
+	int ans2[2] = { 0, 1 };
 
 	for (i = 0; i < MI1; i++)
 	{
 		for (j = 0; j < MI2; j++)
 		{
-			M[i][j] = rand() % 10; // % 10 - from 0 to 10
+			M[i][j] = rand() % 10;
 		}
 	}
 
@@ -618,15 +620,81 @@ int task10(void)
 		printf("\n");
 	}
 
-	for (j = 1; j < MI1; j++)
+	for (j = 0; j < MI1; j++)
 	{
 		for (i = 0; i < MI2; i++)
 		{
-			//
+			sum[j] += M[i][j];
 		}
-
 	}
 
-	printf("%d", fsum);
+	printf("\n");
 
+	for (i = 0; i < MI1; i++)
+	{
+		printf("\t%d", sum[i]);
+	}
+
+	//1
+	minSum = sum[0] + sum[1];
+	for (i = 1; i < MI1 - 1; i++)
+	{
+		if ((sum[i] + sum[i + 1]) < minSum)
+		{
+			minSum = sum[i] + sum[i + 1];
+
+			ans1[0] = i;
+			ans1[1] = i + 1;
+		}
+	}
+
+	//2
+	minSum = sum[0] + sum[1];
+	for (i = 1; i < MI1; i++)
+	{
+		if ((sum[i] + sum[i - 1]) < minSum)
+		{
+			minSum = sum[i] + sum[i - 1];
+
+			ans2[0] = i - 1;
+			ans2[1] = i;
+		}
+	}
+
+	printf("\n");
+
+	for (i = 0; i < 2; i++)
+	{
+		printf("\t%d", ans1[i]);
+	}
+
+	/*printf("\n");
+
+	for (i = 0; i < 2; i++)
+	{
+		printf("\t%d", ans2[i]);
+	}*/
+}
+
+int task11(void)
+{
+	int M[MI1][MI2];
+	int i, j;
+
+	for (i = 0; i < MI1; i++)
+	{
+		for (j = 0; j < MI2; j++)
+		{
+			M[i][j] = rand() % 10;
+		}
+	}
+
+	for (i = 0; i < MI1; i++)
+	{
+		for (j = 0; j < MI2; j++)
+		{
+			printf("\t%d", M[i][j]);
+		}
+		printf("\n");
+	}
 }
