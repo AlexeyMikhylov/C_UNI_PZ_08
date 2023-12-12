@@ -601,7 +601,6 @@ int task10(void)
 	int M[MI1][MI2];
 	int i, j, sum[MI1] = { 0 }, minSum;
 	int ans1[2] = { 0, 1 };
-	int ans2[2] = { 0, 1 };
 
 	for (i = 0; i < MI1; i++)
 	{
@@ -635,7 +634,6 @@ int task10(void)
 		printf("\t%d", sum[i]);
 	}
 
-	//1
 	minSum = sum[0] + sum[1];
 	for (i = 1; i < MI1 - 1; i++)
 	{
@@ -648,32 +646,12 @@ int task10(void)
 		}
 	}
 
-	//2
-	minSum = sum[0] + sum[1];
-	for (i = 1; i < MI1; i++)
-	{
-		if ((sum[i] + sum[i - 1]) < minSum)
-		{
-			minSum = sum[i] + sum[i - 1];
-
-			ans2[0] = i - 1;
-			ans2[1] = i;
-		}
-	}
-
 	printf("\n");
 
 	for (i = 0; i < 2; i++)
 	{
 		printf("\t%d", ans1[i]);
 	}
-
-	/*printf("\n");
-
-	for (i = 0; i < 2; i++)
-	{
-		printf("\t%d", ans2[i]);
-	}*/
 }
 
 int task11(void)
