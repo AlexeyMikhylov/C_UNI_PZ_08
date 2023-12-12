@@ -190,8 +190,6 @@ int task3(void)
 		}
 		printf("\n");
 	}
-
-
 	
 	for (i = 0; i < MI1; i++)
 	{
