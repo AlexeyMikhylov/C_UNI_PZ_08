@@ -4,11 +4,13 @@
 
 #define MI1 4
 #define MI2 4
+
+//task 12
 #define ansSize MI1+MI2+2
 
+//task 6
 #define MI6 4
 #define MJ6 4
-
 #define N 100
 
 int main()
@@ -53,7 +55,6 @@ int run(void)
 		printf("error");
 	}
 }
-
 
 #define I1 7
 #define I2 7
@@ -202,7 +203,6 @@ int task3(void)
 			}
 		}
 	}
-
 
 	printf("%d", count);
 }
@@ -460,7 +460,6 @@ int task7(void)
 		}
 		printf("\n");
 	}
-
 
 	printf("%d", topQuartSum);
 }
