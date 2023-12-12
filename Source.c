@@ -40,6 +40,8 @@ int run(void)
 		task6_1(); printf("\n"); run();
 	case 7:
 		task7(); printf("\n"); run();
+	case 8:
+		task8(); printf("\n"); run();
 	case 9:
 		task9(); printf("\n"); run();
 	case 10:
@@ -498,6 +500,66 @@ int task7(void)
 
 
 	printf("%d", topQuartSum);
+}
+
+int task8(void)
+{
+	int M[MI1][MI2];
+	int i, j, firstNeg = -1, lastNull = -1;
+
+	for (i = 0; i < MI1; i++) {
+		for (j = 0; j < MI2; j++) {
+			M[i][j] = -10 + rand() % 20;
+		}
+	}
+
+	/*int M[MI1][MI2] = {
+		{1, -1, 0, -1, 0},
+		{-2, 0, -1, -2, 0},
+		{-3, -2, 0, -3, 0},
+		{0, -3, 0, -4, 0},
+		{0, 0, -2, -5, 0}
+	};*/
+
+
+	for (i = 0; i < MI1; i++) {
+		for (j = 0; j < MI2; j++) {
+			printf("\t%d", M[i][j]);
+		}
+		printf("\n");
+	}
+
+	for (j = 0; j < MI2; j++)
+	{
+		firstNeg = -1;
+		lastNull = -1;
+
+		for (i = 0; i < MI1; i++)
+		{
+			if (M[i][j] < 0 && firstNeg == -1)
+			{
+				firstNeg = i;
+			}
+			if (M[i][j] == 0)
+			{
+				lastNull = i;
+			}
+		}
+		if (firstNeg != -1 && lastNull != -1)
+		{
+			M[lastNull][j] = M[firstNeg][j];
+			M[firstNeg][j] = 0;
+		}
+	}
+
+	printf("\n");
+
+	for (i = 0; i < MI1; i++) {
+		for (j = 0; j < MI2; j++) {
+			printf("\t%d", M[i][j]);
+		}
+		printf("\n");
+	}
 }
 
 int task9(void)
