@@ -47,7 +47,7 @@ int run(void)
 	case 10:
 		task10(); printf("\n"); run();
 	case 11:
-		task1_1(); printf("\n"); run();
+		task11(); printf("\n"); run();
 	default:
 		printf("error");
 	}
@@ -657,13 +657,14 @@ int task10(void)
 int task11(void)
 {
 	int M[MI1][MI2];
-	int i, j;
+	int i, j, a, cnt = 0;
+	int ans[MI2] = { 0 };
 
 	for (i = 0; i < MI1; i++)
 	{
 		for (j = 0; j < MI2; j++)
 		{
-			M[i][j] = rand() % 10;
+			M[i][j] = rand() % 99;
 		}
 	}
 
@@ -675,4 +676,26 @@ int task11(void)
 		}
 		printf("\n");
 	}
+
+	printf("input a: "); scanf_s("%d", &a);
+	for (i = 0; i < MI1; i++)
+	{
+		for (j = 0; j < MI2; j++)
+		{
+			if (M[i][j] % 10 == a || M[i][j] == a)
+			{
+				ans[i]++;
+			}
+		}
+	}
+
+	for (i = 0; i < MI2; i++)
+	{
+		printf("\n%d", ans[i]);
+	}
+}
+
+int task12(void)
+{
+
 }
