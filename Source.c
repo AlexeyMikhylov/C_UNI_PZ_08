@@ -484,7 +484,6 @@ int task8(void)
 		{0, 0, -2, -5, 0}
 	};*/
 
-
 	for (i = 0; i < MI1; i++) {
 		for (j = 0; j < MI2; j++) {
 			printf("\t%d", M[i][j]);
