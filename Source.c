@@ -2,8 +2,9 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define MI1 5
-#define MI2 5
+#define MI1 4
+#define MI2 4
+#define ansSize MI1+MI2+2
 
 #define MI6 4
 #define MJ6 4
@@ -48,6 +49,8 @@ int run(void)
 		task10(); printf("\n"); run();
 	case 11:
 		task11(); printf("\n"); run();
+	case 12:
+		task12(); printf("\n"); run();
 	default:
 		printf("error");
 	}
@@ -697,5 +700,94 @@ int task11(void)
 
 int task12(void)
 {
+	int M[MI1][MI2];
+	int i, j;
+	int ans[ansSize] = { 0 };
 
+	for (i = 0; i < MI1; i++)
+	{
+		for (j = 0; j < MI2; j++)
+		{
+			M[i][j] = rand() % 10;
+		}
+	}
+
+	/*int M[MI1][MI2] = {
+		{2, 3, 4},
+		{5, 3, 1},
+		{2, 3, 4}
+	};*/
+
+	for (i = 0; i < MI1; i++)
+	{
+		for (j = 0; j < MI2; j++)
+		{
+			printf("\t%d", M[i][j]);
+		}
+		printf("\n");
+	}
+
+	for (i = 0; i < MI1; i++)
+	{
+		for (j = 0; j < MI2; j++)
+		{
+			ans[j] += M[i][j];
+		}
+	}
+
+	for (j = 0; j < MI2; j++)
+	{
+		for (i = 0; i < MI1; i++)
+		{
+			ans[MI1+j] += M[j][i];
+		}
+	}
+
+	for (j = 0; j < MI2; j++)
+	{
+		for (i = 0; i < MI1; i++)
+		{
+			if (i == j)
+			{
+				ans[MI1+MI2] += M[j][i];
+			}
+		}
+	}
+
+	for (i = 0; i < MI1; i++)
+	{
+		for (j = 0; j < MI2; j++)
+		{
+			if ((i + j) == MI1 - 1)
+			{
+				ans[MI1+MI2+1] += M[i][j];
+			}
+		}
+	}
+
+	printf("\n");
+	for (i = 0; i < ansSize; i++)
+	{
+		printf("\t%d", ans[i]);
+	}
+
+	if (isequal(ans)) {
+		printf("\nmagical :)");
+	}
+	else
+	{
+		printf("\nnot magical :(");
+	}
+}
+
+int isequal(int array[ansSize])
+{
+	for (int i = 0; i < ansSize-1; i++)
+	{
+		if (array[i] != array[i+1])
+		{
+			return 0;
+		}
+	}
+	return 1;
 }
